@@ -1,15 +1,14 @@
 //alert("Hello from data processing!")
 
+function titleCase(str) {
+    str = str.toLowerCase().split(" ");
+    for(var i = -; i < str.length; i++){
+        str[i] = str [i].charAt(0),toUpperCase() + str[i].slice(1);    
+    }
+    return str.join(" ");
+}
+
 const queryString = window.location.search;
-
-
-const firstname = "first name";
-const newFirst = firstname.split(' ')
-    .map(w => w[0].toUpperCase() + w.substring(1).toLowerCase())
-    .join(' ');
-    console.log(newFirst)
-document.getElementById("firstname").innerHTML = newFirst;
-
 
 
 if(queryString.length > 0){
@@ -61,7 +60,12 @@ if(queryString.length > 0){
 
         }else{ //process shipping
             key = key.split("_").join(" "); 
-           // console.log(key,value); 
+            
+            if(key == "First Name" || key == "Last Name" || key == "Address" || key == "City"){
+                value = titleCase(value)
+            }
+          
+            // console.log(key,value); 
             myData += `<p>${key}: ${value}</p>`;
         }
         
